@@ -220,7 +220,9 @@ export default function Home() {
             </div>
             <a
               className="mt-4 inline-flex items-center gap-2 rounded-[0.3rem] bg-[#333] px-4 py-3 text-[0.84rem] text-gray-100! transition duration-200 hover:-translate-y-0.5 hover:bg-[#171717]"
-              href="#connect"
+              href="/ishaku_march.pdf"
+              target="_blank"
+              rel="noreferrer"
             >
               <FileDown size={15} /> Download Resume
             </a>
@@ -439,7 +441,7 @@ export default function Home() {
           <p className="m-0">© 2026 Ishaku March</p>
           <div className="flex gap-5">
             <a
-              href="https://github.com"
+              href="https://github.com/ishakumn"
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-[0.35rem]"
@@ -447,7 +449,7 @@ export default function Home() {
               GitHub <ArrowUpRight size={15} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/ishakumn"
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-[0.35rem]"
