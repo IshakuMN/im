@@ -2,18 +2,13 @@
 
 import { motion } from "framer-motion";
 import {
-  Atom,
   ArrowDownRight,
   ArrowUpRight,
-  Braces,
-  BrainCircuit,
-  Database,
   FileDown,
-  GitBranch,
+  Mail,
   Link2,
   Menu,
-  Terminal,
-  Wind,
+  Send,
   X,
   Zap,
 } from "lucide-react";
@@ -25,8 +20,9 @@ import {
 } from "react-icons/si";
 import { FaNodeJs, FaGitAlt, FaPython, FaFigma } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
+import Image from "next/image";
 
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 const technologies = [
   { name: "PostgreSQL", icon: SiPostgresql },
@@ -44,24 +40,39 @@ const technologies = [
 const projects = [
   {
     number: "01",
-    title: "Studiowork",
-    type: "Productivity platform",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
-    shade: "dark",
+    title: "Arctur",
+    type: "artur.fun",
+    href: "https://artur.fun",
+    image: "/arctur.png",
+    frame: "bg-[#e4edd9]",
+    tags: ["Next.js", "Motion", "Branding"],
   },
   {
     number: "02",
-    title: "Ledgerly",
-    type: "Financial dashboard",
-    tags: ["React", "Node.js", "Charts"],
-    shade: "stone",
+    title: "Linkor",
+    type: "linkor-chi.vercel.app",
+    href: "https://linkor-chi.vercel.app/",
+    image: "/lincor.png",
+    frame: "bg-[#dfe6ef]",
+    tags: ["Dashboard", "TypeScript", "UI"],
   },
   {
     number: "03",
-    title: "Memento",
-    type: "A considered notes app",
-    tags: ["Next.js", "Prisma", "Vercel"],
-    shade: "sand",
+    title: "Arts Markets",
+    type: "artsmarkets.vercel.app",
+    href: "https://artsmarkets.vercel.app/",
+    image: "/artsmarket.png",
+    frame: "bg-[#eadfd2]",
+    tags: ["Commerce", "Design", "Web app"],
+  },
+  {
+    number: "04",
+    title: "Histral",
+    type: "histral.netlify.app",
+    href: "https://histral.netlify.app/",
+    image: "/histral.png",
+    frame: "bg-[#dce7df]",
+    tags: ["Landing page", "Motion", "Branding"],
   },
 ];
 
@@ -70,10 +81,55 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const connectLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/ishakumn",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ishakumn",
+  },
+  {
+    label: "Email",
+    href: "mailto:hello@ishakumarch.dev",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const navItems = ["About Me", "Experience", "Projects", "Contact"];
   const navTargets = ["#about", "#experience", "#projects", "#connect"];
+
+  const handleContactChange =
+    (field: keyof typeof contactForm) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setContactForm((current) => ({
+        ...current,
+        [field]: event.target.value,
+      }));
+    };
+
+  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const params = new URLSearchParams({
+      subject: `Portfolio message from ${contactForm.name || "a visitor"}`,
+      body: [
+        `Name: ${contactForm.name || "Not provided"}`,
+        `Email: ${contactForm.email || "Not provided"}`,
+        "",
+        contactForm.message,
+      ].join("\n"),
+    });
+
+    window.location.href = `mailto:hello@ishakumarch.dev?${params.toString()}`;
+  };
 
   return (
     <main>
@@ -352,10 +408,10 @@ export default function Home() {
             Start a project <ArrowUpRight size={15} />
           </a>
         </div>
-        <div className="grid grid-cols-3 gap-6 max-[700px]:grid-cols-1 max-[700px]:gap-12">
+        <div className="grid grid-cols-2 gap-8 max-[900px]:grid-cols-1 max-[700px]:gap-12">
           {projects.map((project, index) => (
             <motion.article
-              className="group"
+              className="group flex flex-col"
               key={project.title}
               initial="hidden"
               whileInView="visible"
@@ -363,25 +419,32 @@ export default function Home() {
               variants={fadeUp}
               transition={{ duration: 0.45, delay: index * 0.06 }}
             >
-              <div
-                className={`relative flex h-82.5 justify-between overflow-hidden p-5 max-[700px]:h-67.5 ${
-                  project.shade === "dark"
-                    ? "bg-[#252724] text-white"
-                    : project.shade === "stone"
-                      ? "bg-[#686963] text-white"
-                      : "bg-[#b7ad99] text-[#2d2d2e]"
-                }`}
+              <a
+                className={`relative flex min-h-124 items-center justify-center overflow-hidden rounded-4xl p-4 transition-transform duration-200 group-hover:-translate-y-1 max-[700px]:min-h-90 ${project.frame}`}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open ${project.title}`}
               >
-                <span className="text-[0.68rem]">{project.number}</span>
-                <div className="absolute left-1/2 top-[53%] -translate-x-1/2 -translate-y-1/2 font-[Georgia,serif] text-[15rem] leading-none italic opacity-90">
-                  {project.title.slice(0, 1)}
+                <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.8),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.08),transparent_36%)]" />
+                <div className="relative flex h-full w-full items-center justify-center rounded-[1.45rem] border border-white/55 bg-[#fbfaf6]/88 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.1)] backdrop-blur-[2px]">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} desktop screenshot`}
+                    width={1600}
+                    height={1200}
+                    className="h-auto max-h-96 w-full max-w-[92%] rounded-2xl border border-black/10 object-contain shadow-[0_18px_48px_rgba(0,0,0,0.16)] max-[700px]:max-h-64"
+                  />
                 </div>
+                <span className="absolute left-5 top-5 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#2d2d2e]/70">
+                  {project.number}
+                </span>
                 <ArrowUpRight
                   size={23}
-                  className="transition-transform duration-200 group-hover:translate-x-1.25 group-hover:-translate-y-1.25"
+                  className="absolute right-5 top-5 transition-transform duration-200 group-hover:translate-x-1.25 group-hover:-translate-y-1.25"
                 />
-              </div>
-              <div className="flex justify-between gap-4 pt-5">
+              </a>
+              <div className="flex items-start justify-between gap-4 pt-5">
                 <div>
                   <h3 className="mb-1 mt-0 text-base font-medium">
                     {project.title}
@@ -390,7 +453,17 @@ export default function Home() {
                     {project.type}
                   </p>
                 </div>
-                <ul className="m-0 flex list-none flex-wrap justify-end gap-[0.35rem] p-0">
+                <a
+                  className="mt-[0.1rem] inline-flex items-center gap-[0.35rem] text-[0.72rem] uppercase tracking-[0.12em] text-[#777b89] transition-colors hover:text-[#2d2d2e]"
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Visit <Link2 size={12} />
+                </a>
+              </div>
+              <div className="pt-3">
+                <ul className="m-0 flex list-none flex-wrap gap-[0.35rem] p-0">
                   {project.tags.map((tag) => (
                     <li
                       key={tag}
@@ -407,7 +480,7 @@ export default function Home() {
       </section>
 
       <section
-        className="mx-auto max-w-[1680px] px-[clamp(1.5rem,8.7vw,11rem)] pb-[2.2rem] pt-38 max-[700px]:pt-22"
+        className="mx-auto max-w-[1680px] px-[clamp(1.5rem,8.7vw,11rem)] pb-24 pt-38 max-[700px]:pt-22"
         id="connect"
       >
         <div className="mb-[4.7rem] flex gap-4 text-[0.66rem] font-bold uppercase tracking-[0.11em] max-[700px]:mb-14">
@@ -415,50 +488,101 @@ export default function Home() {
           <p className="m-0 text-[#777b89]">Connect</p>
         </div>
         <motion.div
-          className="px-0 pb-40 pt-12 text-center max-[700px]:pb-24 max-[700px]:pt-0"
+          className="grid items-start gap-8 border-t border-[#d8d6cf] pt-12 md:grid-cols-[0.92fr_1.08fr] lg:gap-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
           transition={{ duration: 0.6 }}
         >
-          <p className="m-0 text-[0.67rem] font-bold uppercase tracking-[0.12em] text-[#777b89]">
-            Have a project in mind?
-          </p>
-          <h2 className="my-5 text-[clamp(3.3rem,7vw,7.2rem)] leading-[0.92] font-normal tracking-[-0.075em] max-[700px]:text-[clamp(3rem,14vw,5rem)]">
-            Let&apos;s make something
-            <br />
-            <em className="font-[Georgia,serif] font-normal">good together.</em>
-          </h2>
-          <a
-            className="inline-flex items-center gap-[0.42rem] border-b border-[#2d2d2e] pb-2 text-[clamp(1rem,1.6vw,1.35rem)] font-semibold"
-            href="mailto:hello@ishakumarch.dev"
-          >
-            hello@ishakumarch.dev <ArrowUpRight size={24} />
-          </a>
-        </motion.div>
-        <footer className="flex justify-between gap-5 border-t border-[#d8d6cf] pt-6 text-[0.71rem] text-[#777b89] max-[700px]:flex-wrap">
-          <p className="m-0">© 2026 Ishaku March</p>
-          <div className="flex gap-5">
-            <a
-              href="https://github.com/ishakumn"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-[0.35rem]"
-            >
-              GitHub <ArrowUpRight size={15} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ishakumn"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-[0.35rem]"
-            >
-              LinkedIn <ArrowUpRight size={15} />
-            </a>
+          <div className="max-w-[34rem]">
+            <p className="m-0 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#777b89]">
+              Available for select work
+            </p>
+            <h2 className="mt-4 text-[clamp(3rem,5.6vw,5.9rem)] leading-[0.95] font-normal tracking-[-0.07em] max-[700px]:text-[clamp(2.8rem,12vw,4.6rem)]">
+              Let&apos;s build something clear, useful, and well made.
+            </h2>
+            <p className="mt-6 max-w-[28rem] text-[1rem] leading-[1.65] text-[#777b89]">
+              If you have an idea, product, or collaboration in mind, send a
+              short note and I&apos;ll get back with next steps.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {connectLinks.map((link) => (
+                <a
+                  key={link.label}
+                  className="flex items-center justify-between rounded-[1.1rem] border border-[#d8d6cf] px-4 py-3 text-[0.82rem] text-[#2d2d2e] transition-colors hover:bg-[#f5f5f5]"
+                  href={link.href}
+                  target={
+                    link.href.startsWith("mailto:") ? undefined : "_blank"
+                  }
+                  rel={
+                    link.href.startsWith("mailto:") ? undefined : "noreferrer"
+                  }
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight size={15} />
+                </a>
+              ))}
+            </div>
           </div>
-          <p className="m-0 max-[700px]:w-full">Designed with intention.</p>
-        </footer>
+
+          <div className="rounded-[2rem] border border-[#d8d6cf] bg-[#fbfaf6] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.06)] max-[700px]:p-4">
+            <div className="mb-6 flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[#777b89]">
+              <Mail size={14} />
+              Send a message
+            </div>
+            <form className="grid gap-4" onSubmit={handleContactSubmit}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="grid gap-2 text-[0.82rem] text-[#4a4a4a]">
+                  Name
+                  <input
+                    className="rounded-[1rem] border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
+                    name="name"
+                    type="text"
+                    placeholder="Your name"
+                    value={contactForm.name}
+                    onChange={handleContactChange("name")}
+                  />
+                </label>
+                <label className="grid gap-2 text-[0.82rem] text-[#4a4a4a]">
+                  Email
+                  <input
+                    className="rounded-[1rem] border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={contactForm.email}
+                    onChange={handleContactChange("email")}
+                  />
+                </label>
+              </div>
+
+              <label className="grid gap-2 text-[0.82rem] text-[#4a4a4a]">
+                Message
+                <textarea
+                  className="min-h-44 resize-none rounded-[1rem] border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] leading-[1.55] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
+                  name="message"
+                  placeholder="Tell me what you're building, what you need help with, or how you’d like to collaborate."
+                  value={contactForm.message}
+                  onChange={handleContactChange("message")}
+                />
+              </label>
+
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                <p className="m-0 max-w-[18rem] text-[0.74rem] leading-[1.5] text-[#777b89]">
+                  This form opens your email client with the message prefilled.
+                </p>
+                <button
+                  className="inline-flex items-center gap-2 rounded-[0.95rem] border border-[#323232] bg-[#323232] px-5 py-3 text-[0.9rem] font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#1d1d1d]"
+                  type="submit"
+                >
+                  Send message <Send size={15} />
+                </button>
+              </div>
+            </form>
+          </div>
+        </motion.div>
       </section>
     </main>
   );
