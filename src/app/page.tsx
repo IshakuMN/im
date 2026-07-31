@@ -96,6 +96,33 @@ const connectLinks = [
   },
 ];
 
+const experienceEntries = [
+  {
+    period: "Sep 2025 — Jun 2026",
+    role: "Team Lead",
+    company: "Sech Groups",
+    location: "Russia",
+    description:
+      "Led the team building Arctur, an event planning and management platform for the Russian market. Drove task planning, architecture decisions, code reviews, and feature delivery while contributing to frontend and backend development with Next.js, React, TypeScript, Node.js, and PostgreSQL.",
+  },
+  {
+    period: "Oct 2023 — Apr 2025",
+    role: "Software Engineer",
+    company: "Prometheus Technologies",
+    location: "Russia",
+    description:
+      "Contributed to an AI-powered lead generation and email marketing platform. Built responsive interfaces with React, TypeScript, and Next.js, supported backend services in Node.js, and helped improve lead generation effectiveness by about 70% through AI-driven segmentation and campaign workflows.",
+  },
+  {
+    period: "Jun 2022 — Aug 2024",
+    role: "Software Engineer",
+    company: "Binorix",
+    location: "Russia",
+    description:
+      "Delivered full-stack web applications for clients across beauty, logistics, finance, and automation. Built React and Next.js frontends, developed Node.js APIs, integrated third-party services, and optimized PostgreSQL and MongoDB solutions for products ranging from booking systems to trading tools and broker platforms.",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactForm, setContactForm] = useState({
@@ -335,56 +362,37 @@ export default function Home() {
 
           <div className="grid grid-cols-[1.2fr_0.55fr] gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-8 max-[700px]:gap-8">
             <h2 className="m-0 max-w-182.5 text-[clamp(3rem,5.1vw,5.55rem)] leading-none font-normal tracking-[-0.065em]">
-              A few places I&apos;ve made an impact.
+              Roles where I&apos;ve led, built, and delivered.
             </h2>
             <p className="mt-2 text-[0.93rem] leading-[1.6] text-[#aaa9a2]">
-              My work sits at the intersection of engineering, product thinking,
-              and careful execution.
+              A snapshot of the teams and products where I&apos;ve contributed
+              across frontend, backend, and delivery.
             </p>
           </div>
 
           <div className="mt-[6.8rem] border-t border-[#42423e] max-[700px]:mt-16">
-            <article className="grid min-h-22.5 grid-cols-[0.7fr_1.4fr_1fr_auto] items-center gap-4 border-b border-[#42423e] transition-[padding] duration-200 hover:px-4 max-[700px]:grid-cols-[1fr_auto] max-[700px]:py-5">
-              <span className="text-[0.78rem] text-[#aaa9a2]">
-                2023 — Present
-              </span>
-              <h3 className="m-0 text-base font-medium max-[700px]:col-start-1 max-[700px]:row-start-2">
-                Senior Full-stack Developer
-              </h3>
-              <p className="m-0 text-[0.78rem] text-[#aaa9a2] max-[700px]:col-start-1 max-[700px]:row-start-3">
-                Independent / Remote
-              </p>
-              <ArrowUpRight
-                size={19}
-                className="text-[#d8ff6a] max-[700px]:col-start-2 max-[700px]:row-[1/span_3]"
-              />
-            </article>
-            <article className="grid min-h-22.5 grid-cols-[0.7fr_1.4fr_1fr_auto] items-center gap-4 border-b border-[#42423e] transition-[padding] duration-200 hover:px-4 max-[700px]:grid-cols-[1fr_auto] max-[700px]:py-5">
-              <span className="text-[0.78rem] text-[#aaa9a2]">2021 — 2023</span>
-              <h3 className="m-0 text-base font-medium max-[700px]:col-start-1 max-[700px]:row-start-2">
-                Software Engineer
-              </h3>
-              <p className="m-0 text-[0.78rem] text-[#aaa9a2] max-[700px]:col-start-1 max-[700px]:row-start-3">
-                Product-focused team
-              </p>
-              <ArrowUpRight
-                size={19}
-                className="text-[#d8ff6a] max-[700px]:col-start-2 max-[700px]:row-[1/span_3]"
-              />
-            </article>
-            <article className="grid min-h-22.5 grid-cols-[0.7fr_1.4fr_1fr_auto] items-center gap-4 border-b border-[#42423e] transition-[padding] duration-200 hover:px-4 max-[700px]:grid-cols-[1fr_auto] max-[700px]:py-5">
-              <span className="text-[0.78rem] text-[#aaa9a2]">2019 — 2021</span>
-              <h3 className="m-0 text-base font-medium max-[700px]:col-start-1 max-[700px]:row-start-2">
-                Frontend Developer
-              </h3>
-              <p className="m-0 text-[0.78rem] text-[#aaa9a2] max-[700px]:col-start-1 max-[700px]:row-start-3">
-                Digital studio
-              </p>
-              <ArrowUpRight
-                size={19}
-                className="text-[#d8ff6a] max-[700px]:col-start-2 max-[700px]:row-[1/span_3]"
-              />
-            </article>
+            {experienceEntries.map((entry) => (
+              <article
+                className="grid gap-3 border-b border-[#42423e] py-6 transition-[padding] duration-200 hover:px-4 md:grid-cols-[0.7fr_1.35fr_1fr_auto] md:items-start md:gap-4 md:py-7 max-[700px]:py-5"
+                key={`${entry.company}-${entry.period}`}
+              >
+                <span className="text-[0.78rem] text-[#aaa9a2]">
+                  {entry.period}
+                </span>
+                <h3 className="m-0 text-base font-medium">{entry.role}</h3>
+                <div className="flex flex-col gap-1 text-[0.78rem] text-[#aaa9a2]">
+                  <p className="m-0">{entry.company}</p>
+                  <p className="m-0">{entry.location}</p>
+                </div>
+                <ArrowUpRight
+                  size={19}
+                  className="text-[#d8ff6a] md:justify-self-end"
+                />
+                <p className="m-0 text-[0.84rem] leading-[1.6] text-[#c7c6bf] md:col-start-2 md:col-end-4">
+                  {entry.description}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
