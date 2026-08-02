@@ -192,41 +192,62 @@ export default function Home() {
       </header>
 
       <section
-        className="relative mx-auto min-h-[calc(100vh-8.6rem)] max-w-[1680px] px-[clamp(1.5rem,8.7vw,11rem)] pb-18 pt-20 max-[700px]:min-h-190 max-[700px]:pt-18"
+        className="relative mx-auto min-h-[calc(100vh-8.6rem)] max-w-[1680px] px-[clamp(1.5rem,8.7vw,11rem)] pb-18 pt-20 max-[900px]:pb-24 max-[900px]:pt-18 max-[700px]:min-h-190"
         id="top"
       >
-        <motion.div
-          className="relative z-1 max-w-208"
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <h1 className="max-w-275 text-[clamp(4.9rem,7.5vw,9.25rem)] leading-[0.93] font-bold tracking-[-0.09em] max-[700px]:text-[clamp(4.25rem,19vw,6rem)]">
-            Ishaku March
-          </h1>
-          <p className="mt-6 mb-4 text-[clamp(1.6rem,2.15vw,2.75rem)] leading-[1.4] tracking-[-0.045em] max-[700px]:my-8 max-[700px]:mb-5 max-[700px]:text-[1.35rem]">
-            Software Engineer | AI &amp; Full Stack
-          </p>
-          <p className="max-w-188 text-[clamp(1rem,1.25vw,1.55rem)] leading-[1.35] text-[#5c5c5d] max-[700px]:max-w-[18rem] max-[700px]:text-base">
-            Passionate about creating intuitive and engaging user experiences.
-            Specialize in transforming ideas into beautifully crafted products.
-          </p>
-          <div className="mt-8 flex gap-5 max-[700px]:mt-9 max-[700px]:gap-3">
-            <a
-              href="#projects"
-              className="inline-flex  items-center justify-center rounded-[0.7rem] border-2 border-[#3a3a3a] bg-[#323232] px-8 py-4 text-[1.1rem] font-semibold text-gray-100! transition duration-200 hover:-translate-y-0.75 max-[700px]:min-h-[3.8rem] max-[700px]:min-w-0 max-[700px]:flex-1 max-[700px]:px-3 max-[700px]:py-3 max-[700px]:text-[0.95rem]"
-            >
-              View Projects
-            </a>
-            <a
-              href="#connect"
-              className="inline-flex  items-center justify-center rounded-[0.7rem] border-2 border-[#3a3a3a] px-8 py-4 text-[1.1rem] font-semibold transition duration-200 hover:-translate-y-0.75 hover:bg-[#323232] hover:text-white max-[700px]:min-h-[3.8rem] max-[700px]:min-w-0 max-[700px]:flex-1 max-[700px]:px-3 max-[700px]:py-3 max-[700px]:text-[0.95rem]"
-            >
-              Get in Touch
-            </a>
-          </div>
-        </motion.div>
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] lg:gap-16">
+          <motion.div
+            className="relative z-1 max-w-208"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h1 className="max-w-275 text-[clamp(4.9rem,7.5vw,9.25rem)] leading-[0.93] font-bold tracking-[-0.09em] max-[700px]:text-[clamp(4.25rem,19vw,6rem)]">
+              Ishaku March
+            </h1>
+            <p className="mt-6 mb-4 text-[clamp(1.6rem,2.15vw,2.75rem)] leading-[1.4] tracking-[-0.045em] max-[700px]:my-8 max-[700px]:mb-5 max-[700px]:text-[1.35rem]">
+              Software Engineer | AI &amp; Full Stack
+            </p>
+            <p className="max-w-188 text-[clamp(1rem,1.25vw,1.55rem)] leading-[1.35] text-[#5c5c5d] max-[700px]:max-w-[18rem] max-[700px]:text-base">
+              Passionate about creating intuitive and engaging user experiences.
+              Specialize in transforming ideas into beautifully crafted
+              products.
+            </p>
+            <div className="mt-8 flex gap-5 max-[700px]:mt-9 max-[700px]:gap-3">
+              <a
+                href="#projects"
+                className="inline-flex  items-center justify-center rounded-[0.7rem] border-2 border-[#3a3a3a] bg-[#323232] px-8 py-4 text-[1.1rem] font-semibold text-gray-100! transition duration-200 hover:-translate-y-0.75 max-[700px]:min-h-[3.8rem] max-[700px]:min-w-0 max-[700px]:flex-1 max-[700px]:px-3 max-[700px]:py-3 max-[700px]:text-[0.95rem]"
+              >
+                View Projects
+              </a>
+              <a
+                href="#connect"
+                className="inline-flex  items-center justify-center rounded-[0.7rem] border-2 border-[#3a3a3a] px-8 py-4 text-[1.1rem] font-semibold transition duration-200 hover:-translate-y-0.75 hover:bg-[#323232] hover:text-white max-[700px]:min-h-[3.8rem] max-[700px]:min-w-0 max-[700px]:flex-1 max-[700px]:px-3 max-[700px]:py-3 max-[700px]:text-[0.95rem]"
+              >
+                Get in Touch
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative mx-auto flex w-full max-w-136 items-center justify-center lg:justify-end"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={{ duration: 0.6, delay: 0.22 }}
+          >
+            <Image
+              src="/nathan.png"
+              alt="Portrait of Ishaku March"
+              width={1200}
+              height={1400}
+              priority
+              className="h-auto w-full max-w-136 object-cover rotate-6"
+              sizes="(max-width: 900px) 100vw, 40vw"
+            />
+          </motion.div>
+        </div>
 
         <a
           className="absolute bottom-[3.6rem] left-1/2 flex -translate-x-1/2 flex-col items-center gap-[0.7rem] text-[1.05rem] text-[#555] max-[700px]:bottom-[1.4rem] max-[700px]:text-[0.9rem]"
@@ -503,14 +524,14 @@ export default function Home() {
           variants={fadeUp}
           transition={{ duration: 0.6 }}
         >
-          <div className="max-w-[34rem]">
+          <div className="max-w-136">
             <p className="m-0 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#777b89]">
               Available for select work
             </p>
             <h2 className="mt-4 text-[clamp(3rem,5.6vw,5.9rem)] leading-[0.95] font-normal tracking-[-0.07em] max-[700px]:text-[clamp(2.8rem,12vw,4.6rem)]">
               Let&apos;s build something clear, useful, and well made.
             </h2>
-            <p className="mt-6 max-w-[28rem] text-[1rem] leading-[1.65] text-[#777b89]">
+            <p className="mt-6 max-w-md text-[1rem] leading-[1.65] text-[#777b89]">
               If you have an idea, product, or collaboration in mind, send a
               short note and I&apos;ll get back with next steps.
             </p>
@@ -535,7 +556,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#d8d6cf] bg-[#fbfaf6] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.06)] max-[700px]:p-4">
+          <div className="rounded-4xl border border-[#d8d6cf] bg-[#fbfaf6] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.06)] max-[700px]:p-4">
             <div className="mb-6 flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[#777b89]">
               <Mail size={14} />
               Send a message
@@ -545,7 +566,7 @@ export default function Home() {
                 <label className="grid gap-2 text-[0.82rem] text-[#4a4a4a]">
                   Name
                   <input
-                    className="rounded-[1rem] border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
+                    className="rounded-2xl border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
                     name="name"
                     type="text"
                     placeholder="Your name"
@@ -556,7 +577,7 @@ export default function Home() {
                 <label className="grid gap-2 text-[0.82rem] text-[#4a4a4a]">
                   Email
                   <input
-                    className="rounded-[1rem] border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
+                    className="rounded-2xl border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
                     name="email"
                     type="email"
                     placeholder="you@example.com"
@@ -569,7 +590,7 @@ export default function Home() {
               <label className="grid gap-2 text-[0.82rem] text-[#4a4a4a]">
                 Message
                 <textarea
-                  className="min-h-44 resize-none rounded-[1rem] border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] leading-[1.55] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
+                  className="min-h-44 resize-none rounded-2xl border border-[#d8d6cf] bg-white px-4 py-3 text-[0.95rem] leading-[1.55] text-[#2d2d2e] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#829825]"
                   name="message"
                   placeholder="Tell me what you're building, what you need help with, or how you’d like to collaborate."
                   value={contactForm.message}
@@ -578,7 +599,7 @@ export default function Home() {
               </label>
 
               <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                <p className="m-0 max-w-[18rem] text-[0.74rem] leading-[1.5] text-[#777b89]">
+                <p className="m-0 max-w-[18rem] text-[0.74rem] leading-normal text-[#777b89]">
                   This form opens your email client with the message prefilled.
                 </p>
                 <button
